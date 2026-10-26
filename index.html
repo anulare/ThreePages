@@ -4,19 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorium 3</title>
+    <style>
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: darkred;
+        }
+    </style>
 </head>
+    
 <body bgcolor="#ffffff" text="#000000">
-
+    
     <h1 align="center">Dzień dobry, nazywam się Artemii Kutsenko, to jest moja własna strona internetowa</h1>
-
     <nav>
-            <ul>
-                <li>Główna</li>
-                <li>Kolumny</li>
-                <li>Formularz</li>
-                <li>Galeria</li>
-                <li>Kolumny 2</li>
-            </ul>
+        <ul>
+            <li><a href="#">Strona Główna</a></li>
+            <li><a href="#">Kolumny 1</a></li>
+            <li><a href="#">Kolumny 2</a></li>
+            <li><a href="#">Formularz</a></li>
+            <li><a href="#">Zdjęcia</a></li>
+        </ul>
     </nav>
     
     <div align="center">
@@ -25,6 +51,6 @@
             <p><a href="strona2.html"><font size="4">strona 2</font></a></p>
         </ul>
     </div>
-
+    
 </body>
 </html>
