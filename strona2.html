@@ -2,56 +2,134 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Podstrona 2 - Formularz</title>
+    <title>Formularz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        label {
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 10px rgba(0, 123, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        input[type="submit"]:active {
+            background-color: #004494;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+            transform: translateY(1px) scale(0.97);
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-
     <p><a href="index.html">cofnij</a></p>
-
-    <table width="500" align="center">
+    
+    <table width="500" align="center" class="form-container">
         <tr>
             <td>
                 <form action="#" method="post">
-                    
-                    <table border="0" width="100%" cellpadding="5">
+                    <table border="0" width="100%" cellpadding="8">
                         <tr>
-                            <td align="right" width="30%"><b><label for="imie">imię</label></b></td>
-                            <td width="70%"><input type="text" id="imie" name="imie" size="30" required></td>
+                            <td align="right" width="35%"><label for="imie">Imię</label></td>
+                            <td width="65%"><input type="text" id="imie" name="imie" required></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="nazwisko">nazwisko</label></b></td>
-                            <td><input type="text" id="nazwisko" name="nazwisko" size="30" required></td>
+                            <td align="right"><label for="nazwisko">Nazwisko</label></td>
+                            <td><input type="text" id="nazwisko" name="nazwisko" required></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="ulica">ulica</label></b></td>
-                            <td><input type="text" id="ulica" name="ulica" size="30"></td>
+                            <td align="right"><label for="ulica">ulica</label></td>
+                            <td><input type="text" id="ulica" name="ulica"></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="miasto">miasto</label></b></td>
-                            <td><input type="text" id="miasto" name="miasto" size="30"></td>
+                            <td align="right"><label for="miasto">miasto</label></td>
+                            <td><input type="text" id="miasto" name="miasto"></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="haslo">hasło</label></b></td>
-                            <td><input type="password" id="haslo" name="haslo" size="30" required></td>
+                            <td align="right"><label for="haslo">hasło</label></td>
+                            <td><input type="password" id="haslo" name="haslo" required></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="data_urodzenia">data urodzenia</label></b></td>
+                            <td align="right"><label for="data_urodzenia">data urodzenia</label></td>
                             <td><input type="date" id="data_urodzenia" name="data_urodzenia"></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="telefon">telefon</label></b></td>
-                            <td><input type="tel" id="telefon" name="telefon" size="30"></td>
+                            <td align="right"><label for="telefon">telefon</label></td>
+                            <td><input type="tel" id="telefon" name="telefon"></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="wojewodztwo">województwo</label></b></td>
-                            <td><input type="text" id="wojewodztwo" name="wojewodztwo" size="30"></td>
+                            <td align="right"><label for="wojewodztwo">województwo</label></td>
+                            <td><input type="text" id="wojewodztwo" name="wojewodztwo"></td>
                         </tr>
                         <tr>
-                            <td align="right"><b><label for="email">email</label></b></td>
-                            <td><input type="email" id="email" name="email" size="30" required></td>
+                            <td align="right"><label for="email">email</label></td>
+                            <td><input type="email" id="email" name="email" required></td>
                         </tr>
                         <tr>
-                            <td align="right" valign="top"><b><label for="uwagi">uwagi</label></b></td>
+                            <td align="right" valign="top"><label for="uwagi">uwagi</label></td>
                             <td><textarea id="uwagi" name="uwagi"></textarea></td>
                         </tr>
                         <tr>
@@ -68,11 +146,9 @@
                             </td>
                         </tr>
                     </table>
-
                 </form>
             </td>
         </tr>
     </table>
-
 </body>
 </html>
