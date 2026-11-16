@@ -15,13 +15,11 @@
             border-radius: 10px;
             display: inline-block;
         }
-        
         a {
             color: #ffebcd;
             text-decoration: none;
             font-weight: bold;
         }
-        
         a:hover {
             text-decoration: underline;
         }
@@ -35,12 +33,12 @@
             font-weight: bold;
             font-size: 16px;
         }
-
         input[type="text"],
         input[type="password"],
         input[type="date"],
         input[type="tel"],
         input[type="email"],
+        select,
         textarea {
             width: 100%;
             padding: 10px;
@@ -48,20 +46,42 @@
             border-radius: 6px;
             box-sizing: border-box;
             font-family: inherit;
+            background-color: #fff;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-
-        input:focus, textarea:focus {
+        input:focus, select:focus, textarea:focus {
             border-color: #ff4500;
             box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
             outline: none;
         }
-
+        input.input-error, select.input-error {
+            border: 2px solid #8b0000;
+            background-color: #fff5f5;
+        }
+        .error-msg {
+            display: none;
+            color: #ffdddd;
+            background-color: rgba(139, 0, 0, 0.85);
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 12.5px;
+            margin-top: 5px;
+            line-height: 1.3;
+        }
+        .success-banner {
+            display: none;
+            background-color: #1e4620;
+            color: #d4edda;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
         textarea {
             resize: vertical;
             min-height: 80px;
         }
-
         input[type="submit"] {
             background-color: #ff4500;
             color: white;
@@ -73,19 +93,16 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
         }
-
         input[type="submit"]:hover {
             background-color: #cc3700;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
-
         input[type="submit"]:active {
             background-color: #992900;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transform: translateY(1px) scale(0.97);
         }
-        
         .checkbox-text {
             color: #ff4500;
             font-weight: bold;
@@ -94,47 +111,91 @@
 </head>
 <body>
     <p><a href="index.html">← cofnij</a></p>
-    
-    <table width="500" align="center" class="form-container">
+
+    <table width="540" align="center" class="form-container">
         <tr>
             <td>
-                <form action="#" method="post">
+                <div id="success-banner" class="success-banner">Formularz został poprawnie zwalidowany i wysłany!</div>
+                <form id="userForm" action="#" method="post" novalidate>
                     <table border="0" width="100%" cellpadding="8">
                         <tr>
-                            <td align="right" width="35%"><label for="imie">imię</label></td>
-                            <td width="65%"><input type="text" id="imie" name="imie" required></td>
+                            <td align="right" valign="top" width="35%"><label for="imie">imię</label></td>
+                            <td width="65%">
+                                <input type="text" id="imie" name="imie" placeholder="np. Jan">
+                                <div class="error-msg" id="err-imie"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="nazwisko">nazwisko</label></td>
-                            <td><input type="text" id="nazwisko" name="nazwisko" required></td>
+                            <td align="right" valign="top"><label for="nazwisko">nazwisko</label></td>
+                            <td>
+                                <input type="text" id="nazwisko" name="nazwisko" placeholder="np. Kowalski">
+                                <div class="error-msg" id="err-nazwisko"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="ulica">ulica</label></td>
-                            <td><input type="text" id="ulica" name="ulica"></td>
+                            <td align="right" valign="top"><label for="ulica">ulica</label></td>
+                            <td>
+                                <input type="text" id="ulica" name="ulica">
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="miasto">miasto</label></td>
-                            <td><input type="text" id="miasto" name="miasto"></td>
+                            <td align="right" valign="top"><label for="miasto">miasto</label></td>
+                            <td>
+                                <input type="text" id="miasto" name="miasto">
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="haslo">hasło</label></td>
-                            <td><input type="password" id="haslo" name="haslo" required></td>
+                            <td align="right" valign="top"><label for="haslo">hasło</label></td>
+                            <td>
+                                <input type="password" id="haslo" name="haslo">
+                                <div class="error-msg" id="err-haslo"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="data_urodzenia">data urodzenia</label></td>
-                            <td><input type="date" id="data_urodzenia" name="data_urodzenia"></td>
+                            <td align="right" valign="top"><label for="data_urodzenia">data urodzenia</label></td>
+                            <td>
+                                <input type="date" id="data_urodzenia" name="data_urodzenia">
+                                <div class="error-msg" id="err-data_urodzenia"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="telefon">telefon</label></td>
-                            <td><input type="tel" id="telefon" name="telefon"></td>
+                            <td align="right" valign="top"><label for="telefon">telefon</label></td>
+                            <td>
+                                <input type="tel" id="telefon" name="telefon" placeholder="123 456 789 lub +48 123 456 789">
+                                <div class="error-msg" id="err-telefon"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="wojewodztwo">województwo</label></td>
-                            <td><input type="text" id="wojewodztwo" name="wojewodztwo"></td>
+                            <td align="right" valign="top"><label for="wojewodztwo">województwo</label></td>
+                            <td>
+                                <select id="wojewodztwo" name="wojewodztwo">
+                                    <option value="">-- wybierz województwo --</option>
+                                    <option value="dolnośląskie">dolnośląskie</option>
+                                    <option value="kujawsko-pomorskie">kujawsko-pomorskie</option>
+                                    <option value="lubelskie">lubelskie</option>
+                                    <option value="lubuskie">lubuskie</option>
+                                    <option value="łódzkie">łódzkie</option>
+                                    <option value="małopolskie">małopolskie</option>
+                                    <option value="mazowieckie">mazowieckie</option>
+                                    <option value="opolskie">opolskie</option>
+                                    <option value="podkarpackie">podkarpackie</option>
+                                    <option value="podlaskie">podlaskie</option>
+                                    <option value="pomorskie">pomorskie</option>
+                                    <option value="śląskie">śląskie</option>
+                                    <option value="świętokrzyskie">świętokrzyskie</option>
+                                    <option value="warmińsko-mazurskie">warmińsko-mazurskie</option>
+                                    <option value="wielkopolskie">wielkopolskie</option>
+                                    <option value="zachodniopomorskie">zachodniopomorskie</option>
+                                </select>
+                                <div class="error-msg" id="err-wojewodztwo"></div>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right"><label for="email">email</label></td>
-                            <td><input type="email" id="email" name="email" required></td>
+                            <td align="right" valign="top"><label for="email">email</label></td>
+                            <td>
+                                <input type="email" id="email" name="email" placeholder="jan.kowalski@domena.pl">
+                                <div class="error-msg" id="err-email"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td align="right" valign="top"><label for="uwagi">uwagi</label></td>
@@ -158,5 +219,190 @@
             </td>
         </tr>
     </table>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const dateInput = document.getElementById('data_urodzenia');
+
+        const todayObj = new Date();
+        const yyyy = todayObj.getFullYear();
+        const mm = String(todayObj.getMonth() + 1).padStart(2, '0');
+        const dd = String(todayObj.getDate()).padStart(2, '0');
+        dateInput.max = `${yyyy}-${mm}-${dd}`;
+
+        const nameRegex = /^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}$/;
+        const dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+        const phoneRegex = /^(\+48\s)?\d{3}\s\d{3}\s\d{3}$/;
+        const emailRegex = /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z](?:[a-zA-Z0-9._%+-]*[a-zA-Z0-9_%+-])?@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,63}$/;
+
+        function showError(fieldId, message) {
+            const input = document.getElementById(fieldId);
+            const errorBox = document.getElementById(`err-${fieldId}`);
+            input.classList.add('input-error');
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+        }
+
+        function clearError(fieldId) {
+            const input = document.getElementById(fieldId);
+            const errorBox = document.getElementById(`err-${fieldId}`);
+            input.classList.remove('input-error');
+            errorBox.textContent = '';
+            errorBox.style.display = 'none';
+        }
+
+        function validateImie() {
+            const val = document.getElementById('imie').value.trim();
+            if (!val) {
+                showError('imie', 'Pole „imię” jest wymagane.');
+                return false;
+            }
+            if (!/^[A-ZĄĆĘŁŃÓŚŹŻ]/.test(val)) {
+                showError('imie', 'Imię musi zaczynać się wielką literą.');
+                return false;
+            }
+            if (!/^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$/.test(val)) {
+                showError('imie', 'Imię może zawierać wyłącznie litery (bez cyfr, spacji i znaków specjalnych).');
+                return false;
+            }
+            if (!nameRegex.test(val)) {
+                showError('imie', 'Imię musi składać się z co najmniej 3 liter.');
+                return false;
+            }
+            clearError('imie');
+            return true;
+        }
+
+        function validateNazwisko() {
+            const val = document.getElementById('nazwisko').value.trim();
+            if (!val) {
+                showError('nazwisko', 'Pole „nazwisko” jest wymagane.');
+                return false;
+            }
+            if (!/^[A-ZĄĆĘŁŃÓŚŹŻ]/.test(val)) {
+                showError('nazwisko', 'Nazwisko musi zaczynać się wielką literą.');
+                return false;
+            }
+            if (!/^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$/.test(val)) {
+                showError('nazwisko', 'Nazwisko może zawierać wyłącznie litery (bez cyfr, spacji i znaków specjalnych).');
+                return false;
+            }
+            if (!nameRegex.test(val)) {
+                showError('nazwisko', 'Nazwisko musi składać się z co najmniej 3 liter.');
+                return false;
+            }
+            clearError('nazwisko');
+            return true;
+        }
+
+        function validateHaslo() {
+            const val = document.getElementById('haslo').value;
+            if (!val) {
+                showError('haslo', 'Pole „hasło” jest wymagane.');
+                return false;
+            }
+            clearError('haslo');
+            return true;
+        }
+
+        function validateData() {
+            const val = dateInput.value;
+            if (!val) {
+                showError('data_urodzenia', 'Wybierz datę urodzenia.');
+                return false;
+            }
+            if (!dateFormatRegex.test(val)) {
+                showError('data_urodzenia', 'Nieprawidłowy format daty (miesiąc musi być ≤ 12, a dzień ≤ 31).');
+                return false;
+            }
+
+            const [year, month, day] = val.split('-').map(Number);
+            const enteredDate = new Date(year, month - 1, day);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (
+                enteredDate.getFullYear() !== year ||
+                enteredDate.getMonth() !== month - 1 ||
+                enteredDate.getDate() !== day
+            ) {
+                showError('data_urodzenia', 'Taki dzień nie istnieje w kalendarzu (np. 31 lutego).');
+                return false;
+            }
+
+            if (enteredDate > today) {
+                showError('data_urodzenia', 'Data urodzenia nie może być późniejsza niż dzisiejsza data.');
+                return false;
+            }
+
+            clearError('data_urodzenia');
+            return true;
+        }
+
+        function validateTelefon() {
+            const val = document.getElementById('telefon').value.trim();
+            if (!val) {
+                showError('telefon', 'Podaj numer telefonu.');
+                return false;
+            }
+            if (!phoneRegex.test(val)) {
+                showError('telefon', 'Nieprawidłowy format. Wpisz 9 cyfr (XXX XXX XXX) lub 11 cyfr z kierunkowym (+48 XXX XXX XXX).');
+                return false;
+            }
+            clearError('telefon');
+            return true;
+        }
+
+        function validateWojewodztwo() {
+            const val = document.getElementById('wojewodztwo').value;
+            if (!val) {
+                showError('wojewodztwo', 'Wybierz województwo z listy.');
+                return false;
+            }
+            clearError('wojewodztwo');
+            return true;
+        }
+
+        function validateEmail() {
+            const val = document.getElementById('email').value.trim();
+            if (!val) {
+                showError('email', 'Adres e-mail jest wymagany.');
+                return false;
+            }
+            if (!emailRegex.test(val)) {
+                showError('email', 'Nieprawidłowy format adresu e-mail (musi zaczynać się literą i zawierać poprawną domenę).');
+                return false;
+            }
+            clearError('email');
+            return true;
+        }
+
+        document.getElementById('imie').addEventListener('input', validateImie);
+        document.getElementById('nazwisko').addEventListener('input', validateNazwisko);
+        document.getElementById('haslo').addEventListener('input', validateHaslo);
+        dateInput.addEventListener('change', validateData);
+        document.getElementById('telefon').addEventListener('input', validateTelefon);
+        document.getElementById('wojewodztwo').addEventListener('change', validateWojewodztwo);
+        document.getElementById('email').addEventListener('input', validateEmail);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const successBanner = document.getElementById('success-banner');
+            successBanner.style.display = 'none';
+
+            const isValid =
+                validateImie() &
+                validateNazwisko() &
+                validateHaslo() &
+                validateData() &
+                validateTelefon() &
+                validateWojewodztwo() &
+                validateEmail();
+
+            if (isValid) {
+                successBanner.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
