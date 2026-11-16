@@ -224,14 +224,12 @@
         const form = document.getElementById('userForm');
         const dateInput = document.getElementById('data_urodzenia');
 
-        // Ustawienie maksymalnej daty w kalendarzu na dzisiejszą
         const todayObj = new Date();
         const yyyy = todayObj.getFullYear();
         const mm = String(todayObj.getMonth() + 1).padStart(2, '0');
         const dd = String(todayObj.getDate()).padStart(2, '0');
         dateInput.max = `${yyyy}-${mm}-${dd}`;
 
-        // Wyrażenia regularne (Regex)
         const nameRegex = /^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}$/;
         const dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
         const phoneRegex = /^(?:\+48 *)?(?:\d *){8}\d$/;
@@ -378,8 +376,6 @@
             clearError('email');
             return true;
         }
-
-        // Walidacja na bieżąco podczas poprawiania pól
         document.getElementById('imie').addEventListener('input', validateImie);
         document.getElementById('nazwisko').addEventListener('input', validateNazwisko);
         document.getElementById('haslo').addEventListener('input', validateHaslo);
@@ -388,7 +384,7 @@
         document.getElementById('wojewodztwo').addEventListener('change', validateWojewodztwo);
         document.getElementById('email').addEventListener('input', validateEmail);
 
-        // Walidacja przy wysyłaniu formularza
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const successBanner = document.getElementById('success-banner');
